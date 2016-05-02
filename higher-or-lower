@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<script>
+var y;
+var trial = 1;
+var tries = 5;
+function check() {
+    var user_guess = document.getElementById("guess").value;
+    var count = 0;
+    if(trial<tries+1){
+        document.getElementById("tries").innerHTML = "Tries left: " + (tries-trial);
+        if (user_guess == y){
+            document.getElementById("ans").innerHTML = "You guessed correctly! Please reset and randomize.";
+            trial = 6;
+        }
+        else if(user_guess > y){
+            document.getElementById("ans").innerHTML = "Try again. You're too high!";
+        }
+        else if(user_guess < y){
+            document.getElementById("ans").innerHTML = "Try again. You're too low!";
+        }
+        ++trial;
+    }
+    else {
+        document.getElementById("tries").innerHTML = "You have no tries left. Please reset";
+    }
+}
+function randomi(a,b) {
+  var ran = Math.random() * (100 - 0) + 0;
+  document.getElementById("rint").innerHTML = ran.toFixed(0);
+  y = ran.toFixed(0);
+}
+function reset(){
+    trial = 1 
+    document.getElementById("tries").innerHTML = "Tries left: " + (tries)
+}
+</script>
+<head>
+</head>
+<body>
+<p>NUMBER GUESSING GAME</p>
+<button onclick="randomi(0,100)">Randomize</button>
+<p id=rint>Random integer:</p>
+Enter guess (1-100):<br> <input id="guess"> <br>
+<button onclick="check()">Check it</button>
+<p id=ans>Is it?</p>
+<p id=tries>Tries left: 5</p>
+<button onclick="reset()">Reset</button>
+</body>
+</html>
